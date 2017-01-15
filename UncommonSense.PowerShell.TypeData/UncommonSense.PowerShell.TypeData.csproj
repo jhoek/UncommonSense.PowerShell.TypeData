@@ -52,6 +52,7 @@
     <Compile Include="Cmdlets\NewMemberCmdlet.cs" />
     <Compile Include="Cmdlets\NewMemberSetCmdlet.cs" />
     <Compile Include="Cmdlets\NewNotePropertyCmdlet.cs" />
+    <Compile Include="Cmdlets\NewPropertySetCmdlet.cs" />
     <Compile Include="Cmdlets\NewScriptMethodCmdlet.cs" />
     <Compile Include="Cmdlets\NewScriptPropertyCmdlet.cs" />
     <Compile Include="Cmdlets\NewTypeCmdlet.cs" />
