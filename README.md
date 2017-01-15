@@ -12,16 +12,69 @@
   Alternatively, you could leave the files where they are, and call `Import-Module {Full/Path/To/UncommonSense.PowerShell.TypeData.psd1}`
   
 ## Usage
+If you're not familiar with the PowerShell type extension file format, please run `Get-Help about_Types.ps1xml` in your PowerShell console to find additional information.
+
+In an attempt to simplify and shorten the syntax:
+- all the cmdlets in the module have aliases (see below);
+- most (if not all) cmdlet parameters are positional;
+- each parent node has a script block parameter for easily adding child nodes.
+
+### Aliases
+The following aliases are defined automatically.
+```powershell
+Set-Alias -Name Types -Value New-TypeData
+Set-Alias -Name _Type -Value New-Type
+Set-Alias -Name AliasProperty -Value New-AliasProperty
+Set-Alias -Name CodeMethod -Value New-CodeMethod
+Set-Alias -Name CodeProperty -Value New-CodeProperty
+Set-Alias -name CodeReference -Value New-CodeReference
+Set-Alias -Name MemberSet -Value New-MemberSet
+Set-Alias -Name NoteProperty -Value New-NoteProperty
+Set-Alias -Name PropertySet -Value New-PropertySet
+Set-Alias -Name ScriptMethod -Value New-ScriptMethod
+Set-Alias -Name ScriptProperty -Value New-ScriptProperty
+```
+
+A possible usage scenario might look like this (using the cmdlet aliases and leaving out parameter name as much as possible):
+
 ```powershell
 Types {
     _Type Foo {
-        NoteProperty Oink Boink
-        ScriptProperty Foo 'Get-Content Foo'
+        NoteProperty Baz Bar
+        ScriptProperty Qux 'Get-Quux'
         MemberSet {
-            NoteProperty Boo Bah
+            NoteProperty Quuux Boink
         }
     }
 }
 ```
 
-> Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`. 
+The resulting XML looks like this:
+
+```xml
+<Types>
+  <Type>
+    <Name>Foo</Name>
+    <Members>
+      <NoteProperty>
+        <Name>Baz</Name>
+        <Value>Bar</Value>
+      </NoteProperty>
+      <ScriptProperty>
+        <Name>Qux</Name>
+        <GetScriptBlock>Get-Quux</GetScriptBlock>
+      </ScriptProperty>
+      <MemberSet>
+        <Name>
+            NoteProperty Quuux Boink
+        </Name>
+        <Members />
+      </MemberSet>
+    </Members>
+  </Type>
+</Types>
+```
+
+You could then use redirection, `Out-File` or `Set-Content` to send the XML to type extension file, that can be loaded with `Update-TypeData` or be made part of your own PowerShell module.
+
+> Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`.
