@@ -19,13 +19,13 @@ Describe 'UncommonSense.Powershell.TypeData' {
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><CodeMethod><Name>Baz</Name><CodeReference><TypeName>Bar</TypeName><MethodName>Qux</MethodName></CodeReference></CodeMethod></Members></Type></Types>'
     }
 
-	It 'Correctly renders a NoteProperty' {
-		(Types { 
-			_Type Foo { 
-				NoteProperty Baz Bar
-			} 
-		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><NoteProperty><Name>Baz</Name><Value>Bar</Value></NoteProperty></Members></Type></Types>'
-	}
+    It 'Correctly renders a CodeProperty' {
+        (Types {
+            _Type Foo {
+                CodeProperty Baz (CodeReference Bar Qux) (CodeReference Quux Quuux)
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><CodeProperty><Name>Baz</Name><GetCodeReference><TypeName>Bar</TypeName><MethodName>Qux</MethodName></GetCodeReference><SetCodeReference><TypeName>Quux</TypeName><MethodName>Quuux</MethodName></SetCodeReference></CodeProperty></Members></Type></Types>'
+    }
 
 	It 'Correctly renders a MemberSet' {
 		(Types { 
@@ -36,4 +36,36 @@ Describe 'UncommonSense.Powershell.TypeData' {
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><Members><PropertySet><Name>DefaultDisplayPropertySet</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></MemberSet></Members></Type></Types>'
 	}
+
+	It 'Correctly renders a NoteProperty' {
+		(Types { 
+			_Type Foo { 
+				NoteProperty Baz Bar
+			} 
+		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><NoteProperty><Name>Baz</Name><Value>Bar</Value></NoteProperty></Members></Type></Types>'
+	}
+
+    It 'Correctly renders a PropertySet' {
+        (Types {
+            _Type Foo {
+                PropertySet Baz Bar,Qux,Quux
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><PropertySet><Name>Baz</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></Type></Types>'
+    }
+
+    It 'Correctly renders a ScriptMethod' {
+        (Types {
+            _Type Foo {
+                ScriptMethod Baz 'Get-Process'
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><ScriptMethod><Name>Baz</Name><Script>Get-Process</Script></ScriptMethod></Members></Type></Types>'
+    }
+
+    It 'Correctly renders a ScriptProperty' {
+        (Types {
+            _Type Foo {
+                ScriptProperty Baz 'Get-Bar' 'Set-Bar'
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><ScriptProperty><Name>Baz</Name><GetScriptBlock>Get-Bar</GetScriptBlock><SetScriptBlock>Set-Bar</SetScriptBlock></ScriptProperty></Members></Type></Types>'
+    }
 }
