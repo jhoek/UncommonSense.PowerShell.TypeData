@@ -9,7 +9,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
     [Cmdlet(VerbsCommon.New, "CodeReference")]
     [OutputType(typeof(CodeReference))]
-    public class NewCodeReferenceCmdlet : NewMemberCmdlet
+    public class NewCodeReferenceCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, Position=0)]
         public string TypeName
