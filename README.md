@@ -21,6 +21,7 @@ In an attempt to simplify and shorten the syntax:
 
 ### Aliases
 The following aliases are defined automatically.
+
 ```powershell
 Set-Alias -Name Types -Value New-TypeData
 Set-Alias -Name _Type -Value New-Type
@@ -35,14 +36,16 @@ Set-Alias -Name ScriptMethod -Value New-ScriptMethod
 Set-Alias -Name ScriptProperty -Value New-ScriptProperty
 ```
 
-A possible usage scenario might look like this (using the cmdlet aliases and leaving out parameter name as much as possible):
+> Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`.
+
+A possible usage scenario might look like this (using the cmdlet aliases and leaving out parameter names as much as possible):
 
 ```powershell
 Types {
     _Type Foo {
         NoteProperty Baz Bar
         ScriptProperty Qux 'Get-Quux'
-        MemberSet {
+        MemberSet Quux {
             NoteProperty Quuux Boink
         }
     }
@@ -65,9 +68,12 @@ The resulting XML looks like this:
         <GetScriptBlock>Get-Quux</GetScriptBlock>
       </ScriptProperty>
       <MemberSet>
-        <Name>
-            NoteProperty Quuux Boink
-        </Name>
+        <Name>Quux</Name>
+        <Members>
+            <NoteProperty>
+                <Name>Quuux</Name>
+                <Value>Boink</Value>
+            </NoteProperty>
         <Members />
       </MemberSet>
     </Members>
@@ -75,6 +81,4 @@ The resulting XML looks like this:
 </Types>
 ```
 
-You could then use redirection, `Out-File` or `Set-Content` to send the XML to type extension file, that can be loaded with `Update-TypeData` or be made part of your own PowerShell module.
-
-> Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`.
+You could then use redirection, `Out-File` or `Set-Content` to send the XML to type extension file, which can be loaded into your PowerShell session using `Update-TypeData`, or can be made part of your own PowerShell module.
