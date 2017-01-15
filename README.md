@@ -9,4 +9,19 @@
   - UncommonSense.PowerShell.TypeData.psd1
   - UncommonSense.PowerShell.TypeData.psm1
   
+  Alternatively, you could leave the files where they are, and call `Import-Module {Full/Path/To/UncommonSense.PowerShell.TypeData.psd1}`
+  
 ## Usage
+```powershell
+Types {
+    _Type Foo {
+        NoteProperty Oink Boink
+        ScriptProperty Foo 'Get-Content Foo'
+        MemberSet {
+            NoteProperty Boo Bah
+        }
+    }
+}
+```
+
+> Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`. 
