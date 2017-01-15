@@ -1,11 +1,11 @@
 ﻿Import-Module (Join-Path $PSScriptRoot 'bin\debug\UncommonSense.PowerShell.TypeData.psd1')
 
-$Types = Types {
-    TypeInfo Foo {
+Types {
+    _Type Foo {
         NoteProperty Oink Boink
-        AliasProperty Oink BOoin
-        ScriptProperty Foo 'Get-Process'
+        ScriptProperty Foo 'Get-Content Foo'
+        MemberSet {
+            NoteProperty Boo Bah
+        }
     }
-} 
-
-$Types.ToString()
+}

@@ -1,5 +1,5 @@
 ﻿Set-Alias -Name Types -Value New-TypeData
-Set-Alias -Name TypeInfo -Value New-Type
+Set-Alias -Name _Type -Value New-Type
 
 Set-Alias -Name AliasProperty -Value New-AliasProperty
 Set-Alias -Name CodeMethod -Value New-CodeMethod

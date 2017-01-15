@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace UncommonSense.PowerShell.TypeData
 {
-    public class TypeData : KeyedCollection<string, Type>
+    public class Types : KeyedCollection<string, Type>
     {
         protected override string GetKeyForItem(Type item) => item.Name;
         public override string ToString() => ToXml().ToString();

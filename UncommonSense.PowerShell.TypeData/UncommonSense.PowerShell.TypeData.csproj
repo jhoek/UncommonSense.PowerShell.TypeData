@@ -74,10 +74,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="UncommonSense.PowerShell.TypeData.Demo.ps1" />
-    <None Include="UncommonSense.PowerShell.TypeData.ps1xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="UncommonSense.PowerShell.TypeData.psd1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

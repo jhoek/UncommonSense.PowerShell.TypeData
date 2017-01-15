@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
     [Cmdlet(VerbsCommon.New, "TypeData")]
-    [OutputType(typeof(TypeData))]
+    [OutputType(typeof(Types))]
     public class NewTypeDataCmdlet : Cmdlet
     {
         [Parameter(Position = 0)]
@@ -19,7 +19,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
         protected override void ProcessRecord()
         {
-            var typeData = new TypeData();
+            var typeData = new Types();
 
             Types?
                 .Invoke()
@@ -27,7 +27,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
                 .Cast<Type>()
                 .ForEach(o => typeData.Add(o));
 
-            WriteObject(typeData);
+            WriteObject(typeData.ToXml().ToString());
         }
     }
 }

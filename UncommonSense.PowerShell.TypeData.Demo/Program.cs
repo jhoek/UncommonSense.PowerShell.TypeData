@@ -15,10 +15,10 @@ namespace UncommonSense.PowerShell.TypeData.Demo
             var type = new Type("Foo");
             type.Members.Add(aliasProperty);
 
-            var typeData = new TypeData();
-            typeData.Add(type);
+            var types = new Types();
+            types.Add(type);
 
-            Console.WriteLine(typeData.ToXml());
+            Console.WriteLine(types.ToXml());
         }
     }
 }
