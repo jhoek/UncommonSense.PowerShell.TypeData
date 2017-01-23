@@ -85,6 +85,11 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.PowerShell.TypeData\
+copy $(TargetDir)System.Management.Automation.dll c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.PowerShell.TypeData\
+copy $(TargetDir)UncommonSense.PowerShell.TypeData* c:\users\jhoek\Documents\WindowsPowerShell\Modules\UncommonSense.PowerShell.TypeData\</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
