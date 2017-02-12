@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
     [Cmdlet(VerbsCommon.New, "TypeData")]
-    [OutputType(typeof(Types))]
+    [OutputType(typeof(string))]
     public class NewTypeDataCmdlet : Cmdlet
     {
         [Parameter(Position = 0)]
