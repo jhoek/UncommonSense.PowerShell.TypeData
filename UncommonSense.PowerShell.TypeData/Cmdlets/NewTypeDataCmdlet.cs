@@ -17,6 +17,12 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        [Parameter()]
+        public string PreContent
+        {
+            get; set;
+        }
+
         protected override void ProcessRecord()
         {
             var typeData = new Types();
@@ -27,6 +33,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
                 .Cast<Type>()
                 .ForEach(o => typeData.Add(o));
 
+            WriteObject(PreContent);
             WriteObject(typeData.ToXml().ToString());
         }
     }
