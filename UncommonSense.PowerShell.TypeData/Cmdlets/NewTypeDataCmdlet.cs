@@ -33,8 +33,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
                 .Cast<Type>()
                 .ForEach(o => typeData.Add(o));
 
-            WriteObject(PreContent);
-            WriteObject(typeData.ToXml().ToString());
+            WriteObject(
+                new[] { PreContent, typeData.ToXml().ToString() }
+                    .Where(s => s != null)
+                    .Join(Environment.NewLine)
+                );
         }
     }
 }
