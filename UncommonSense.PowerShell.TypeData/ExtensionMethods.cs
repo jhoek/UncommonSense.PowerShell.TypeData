@@ -16,5 +16,10 @@ namespace UncommonSense.PowerShell.TypeData
                 action(item);
             }
         }
+
+        public static string Join(this IEnumerable<string> items, string separator)
+        {
+            return string.Join(separator, items);
+        }
     }
 }
