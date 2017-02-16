@@ -1,0 +1,1 @@
+﻿Invoke-psake -buildFile (Join-Path -Path $PSScriptRoot -ChildPath ./Build.Psake.ps1)
