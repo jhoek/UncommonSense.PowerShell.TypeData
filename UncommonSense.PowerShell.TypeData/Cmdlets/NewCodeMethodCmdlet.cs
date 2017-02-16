@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new code method definition.</para>
+    /// <para type="description">A code method references a static method of a .NET Framework object.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "CodeMethod")]
     [OutputType(typeof(CodeMethod))]
     public class NewCodeMethodCmdlet : NewMemberCmdlet

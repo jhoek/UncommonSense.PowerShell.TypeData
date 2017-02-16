@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new property set definition.</para>
+    /// <para type="description">A property set defines a group of extended properties that can be referenced by the name of the set.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "PropertySet")]
     [OutputType(typeof(PropertySet))]
     public class NewPropertySetCmdlet : NewMemberCmdlet

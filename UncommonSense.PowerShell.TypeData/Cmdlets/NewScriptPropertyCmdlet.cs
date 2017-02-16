@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new script property definition.</para>
+    /// <para type="description">A script property defines a property whose value is the output of a script.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "ScriptProperty")]
     [OutputType(typeof(ScriptProperty))]
     public class NewScriptPropertyCmdlet : NewMemberCmdlet

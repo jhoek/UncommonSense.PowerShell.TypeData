@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Adds a type to a type file structure, as a container for subsequent member definitions.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "Type")]
     [OutputType(typeof(Type))]
     public class NewTypeCmdlet : Cmdlet

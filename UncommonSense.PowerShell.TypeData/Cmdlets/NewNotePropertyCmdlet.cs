@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new note property definition.</para>
+    /// <para type="description">A note property defines a property that has a static value.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "NoteProperty")]
     [OutputType(typeof(NoteProperty))]
     public class NewNotePropertyCmdlet : NewMemberCmdlet

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new member set definition.</para>
+    /// <para type="description">The PSStandardMembers member set is used by Windows PowerShell to define the default property sets for an object.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "MemberSet")]
     [OutputType(typeof(MemberSet))]
     public class NewMemberSetCmdlet : NewMemberCmdlet

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new alias property definition.</para>
+    /// <para type="description">An alias property defines a new name for an existing property.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "AliasProperty")]
     [OutputType(typeof(AliasProperty))]
     public class NewAliasPropertyCmdlet : NewMemberCmdlet

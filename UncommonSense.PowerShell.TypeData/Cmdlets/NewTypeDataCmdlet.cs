@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new type file structure.</para>
+    /// <para type="description">Types files are XML-based files that let you add properties and methods to existing .NET objects.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "TypeData")]
     [OutputType(typeof(string))]
     public class NewTypeDataCmdlet : Cmdlet

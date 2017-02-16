@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new script method definition.</para>
+    /// <para type="description">A script method defines a method whose value is the output of a script.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "ScriptMethod")]
     [OutputType(typeof(ScriptMethod))]
     public class NewScriptMethodCmdlet : NewMemberCmdlet

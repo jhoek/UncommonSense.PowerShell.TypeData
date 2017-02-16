@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <summary>
+    /// <para type="synopsis">Creates a new code property definition.</para>
+    /// <para type="description">A code property references a static property of a .NET Framework object.</para>
+    /// </summary>
     [Cmdlet(VerbsCommon.New, "CodeProperty")]
     [OutputType(typeof(CodeProperty))]
     public class NewCodePropertyCmdlet : NewMemberCmdlet
