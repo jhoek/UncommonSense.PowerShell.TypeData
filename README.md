@@ -37,6 +37,7 @@ Set-Alias -Name ScriptProperty -Value New-ScriptProperty
 
 > Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`.
 
+### Scenario
 A possible usage scenario might look like this (using the cmdlet aliases and leaving out parameter names as much as possible):
 
 ```powershell
@@ -81,3 +82,16 @@ The resulting XML looks like this:
 ```
 
 You could then use redirection, `Out-File` or `Set-Content` to send the XML to type extension file, which can be loaded into your PowerShell session using `Update-TypeData`, or can be made part of your own PowerShell module.
+
+### Encoding
+Additional text, such as an XML declaration specifying the encoding, can be specified in New-TypeData's `-PreContent` parameter. This text will be emitted before the actual type data.
+
+``` powershell
+New-TypeData -PreContent '<?xml version="1.0" encoding="UTF-8"?>' { ... }
+```
+
+When specifying an encoding in `-PreContent`, make sure you use the same encoding when sending the cmdlet's output to a file or stream.
+
+``` powershell
+New-TypeData -PreContent '<?xml version="1.0" encoding="UTF-8"?>' { ... } | Out-File -Encoding Utf8 -FilePath '...'
+```
