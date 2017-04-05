@@ -21,9 +21,15 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        [Parameter()]
+        public string TypeName
+        {
+            get; set;
+        }
+
         protected override void ProcessRecord()
         {
-            WriteObject(new AliasProperty(Name, ReferencedMemberName));
+            WriteObject(new AliasProperty(Name, ReferencedMemberName) { TypeName = TypeName });
         }
     }
 }

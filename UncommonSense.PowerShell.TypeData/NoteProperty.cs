@@ -14,14 +14,22 @@ namespace UncommonSense.PowerShell.TypeData
             Value = value;
         }
 
-        public override IEnumerable<XNode> GetContentElements()
+        public string TypeName
         {
-            yield return new XElement("Value", Value);
+            get; set;
         }
 
         public string Value
         {
             get; protected set;
+        }
+
+        public override IEnumerable<XNode> GetContentElements()
+        {
+            yield return new XElement("Value", Value);
+
+            if (!string.IsNullOrEmpty(TypeName))
+                yield return new XElement("TypeName", TypeName);
         }
     }
 }

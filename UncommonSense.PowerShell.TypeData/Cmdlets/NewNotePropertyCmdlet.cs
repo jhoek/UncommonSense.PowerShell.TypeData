@@ -15,6 +15,12 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(NoteProperty))]
     public class NewNotePropertyCmdlet : NewMemberCmdlet
     {
+        [Parameter()]
+        public string TypeName
+        {
+            get; set;
+        }
+
         [Parameter(Mandatory = true, Position = 1)]
         public string Value
         {
@@ -23,7 +29,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(new NoteProperty(Name, Value));
+            WriteObject(new NoteProperty(Name, Value) { TypeName = TypeName });
         }
     }
 }
