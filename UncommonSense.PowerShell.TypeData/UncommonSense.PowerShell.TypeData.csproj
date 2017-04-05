@@ -59,6 +59,7 @@
     <Compile Include="Cmdlets\NewScriptMethodCmdlet.cs" />
     <Compile Include="Cmdlets\NewScriptPropertyCmdlet.cs" />
     <Compile Include="Cmdlets\NewTypeCmdlet.cs" />
+    <Compile Include="Cmdlets\NewTypeConverterCmdlet.cs" />
     <Compile Include="Cmdlets\NewTypeDataCmdlet.cs" />
     <Compile Include="CodeMethod.cs" />
     <Compile Include="CodeProperty.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ScriptMethod.cs" />
     <Compile Include="ScriptProperty.cs" />
     <Compile Include="Type.cs" />
+    <Compile Include="TypeConverter.cs" />
     <Compile Include="Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

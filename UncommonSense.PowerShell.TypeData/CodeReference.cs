@@ -15,16 +15,16 @@ namespace UncommonSense.PowerShell.TypeData
             MethodName = methodName;
         }
 
-        public XNode ToXml(string elementName) => new XElement(elementName, new XElement("TypeName", TypeName), new XElement("MethodName", MethodName));
+        public string MethodName
+        {
+            get; set;
+        }
 
         public string TypeName
         {
             get; set;
         }
 
-        public string MethodName
-        {
-            get; set;
-        }
+        public XNode ToXml(string elementName) => new XElement(elementName, new XElement("TypeName", TypeName), new XElement("MethodName", MethodName));
     }
 }

@@ -14,21 +14,43 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(Type))]
     public class NewTypeCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true, Position = 0)]
-        public string Name
-        {
-            get; set;
-        }
-
         [Parameter(Position = 1)]
         public ScriptBlock Members
         {
             get; set;
         }
 
+        [Parameter(Mandatory = true, Position = 0)]
+        public string Name
+        {
+            get; set;
+        }
+
+        [Parameter()]
+        public PSObject TypeConverter
+        {
+            get; set;
+        }
+
+        protected TypeConverter BuildTypeConverter(PSObject typeConverter)
+        {
+            if (typeConverter == null)
+                return null;
+
+            if (typeConverter.BaseObject is TypeConverter)
+                return typeConverter.BaseObject as TypeConverter;
+
+            if (typeConverter.BaseObject is string)
+                return new TypeConverter(typeConverter.BaseObject as string);
+
+            throw new ArgumentOutOfRangeException("TypeConverter");
+        }
+
         protected override void ProcessRecord()
         {
             var @type = new Type(Name);
+
+            @type.TypeConverter = BuildTypeConverter(TypeConverter);
 
             Members?
                 .Invoke()

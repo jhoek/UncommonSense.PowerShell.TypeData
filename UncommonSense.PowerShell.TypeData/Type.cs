@@ -16,18 +16,31 @@ namespace UncommonSense.PowerShell.TypeData
             Members = new Members();
         }
 
-        public override string ToString() => Name;
-
-        public XNode ToXml() => new XElement("Type", new XElement("Name", Name), Members.ToXml());
+        public Members Members
+        {
+            get; protected set;
+        }
 
         public string Name
         {
             get; protected set;
         }
 
-        public Members Members
+        public TypeConverter TypeConverter
         {
-            get; protected set;
+            get; set;
+        }
+
+        public override string ToString() => Name;
+
+        public XNode ToXml() => new XElement("Type", new XElement("Name", Name), GetContentElements());
+
+        protected IEnumerable<XNode> GetContentElements()
+        {
+            yield return Members.ToXml();
+
+            if (TypeConverter != null)
+                yield return TypeConverter.ToXml();
         }
     }
 }

@@ -94,4 +94,16 @@ Describe 'UncommonSense.Powershell.TypeData' {
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><ScriptProperty><Name>Baz</Name><GetScriptBlock>Get-Bar</GetScriptBlock><SetScriptBlock>Set-Bar</SetScriptBlock></ScriptProperty></Members></Type></Types>'
     }
+
+	It 'Correctly renders a type converter from a string' {
+		(Types {
+			_Type Foo -TypeConverter 'Baz'
+		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members/><TypeConverter><TypeName>Baz</TypeName></TypeConverter></Type></Types>'
+	}
+
+	It 'Correctly renders a type converter from a type converter instance' {
+		(Types {
+			_Type Foo -TypeConverter (New-TypeConverter Baz)
+		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members/><TypeConverter><TypeName>Baz</TypeName></TypeConverter></Type></Types>'
+	}
 }
