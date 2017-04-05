@@ -10,3 +10,4 @@ Set-Alias -Name NoteProperty -Value New-NoteProperty
 Set-Alias -Name PropertySet -Value New-PropertySet
 Set-Alias -Name ScriptMethod -Value New-ScriptMethod
 Set-Alias -Name ScriptProperty -Value New-ScriptProperty
+Set-Alias -Name TypeConverter -Value New-TypeConverter

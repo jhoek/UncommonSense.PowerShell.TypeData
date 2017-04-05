@@ -103,7 +103,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
 	It 'Correctly renders a type converter from a type converter instance' {
 		(Types {
-			_Type Foo -TypeConverter (New-TypeConverter Baz)
+			_Type Foo -TypeConverter (TypeConverter Baz)
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members/><TypeConverter><TypeName>Baz</TypeName></TypeConverter></Type></Types>'
 	}
 }
