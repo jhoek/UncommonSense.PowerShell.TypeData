@@ -33,6 +33,7 @@ Set-Alias -Name NoteProperty -Value New-NoteProperty
 Set-Alias -Name PropertySet -Value New-PropertySet
 Set-Alias -Name ScriptMethod -Value New-ScriptMethod
 Set-Alias -Name ScriptProperty -Value New-ScriptProperty
+Set-Alias -Name TypeConverter -Value New-TypeConverter
 ```
 
 > Note: The alias for `New-Type` is `_Type` instead of `Type`, because PowerShell installs `Type` at a higher scope level as an alias for `Get-Content`.
