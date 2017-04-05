@@ -15,7 +15,13 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(MemberSet))]
     public class NewMemberSetCmdlet : NewMemberCmdlet
     {
-        [Parameter(Position =1)]
+        [Parameter()]
+        public bool? InheritMembers
+        {
+            get; set;
+        }
+
+        [Parameter(Position = 1)]
         public ScriptBlock Members
         {
             get; set;
@@ -24,6 +30,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         protected override void ProcessRecord()
         {
             var memberSet = new MemberSet(Name);
+            memberSet.InheritMembers = InheritMembers;
 
             Members?
                 .Invoke()
@@ -31,7 +38,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
                 .Cast<Member>()
                 .ForEach(m => memberSet.Members.Add(m));
 
-            WriteObject(memberSet);                   
+            WriteObject(memberSet);
         }
     }
 }

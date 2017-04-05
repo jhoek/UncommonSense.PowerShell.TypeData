@@ -16,14 +16,19 @@ namespace UncommonSense.PowerShell.TypeData
             Members = new Members(members);
         }
 
-        public override IEnumerable<XNode> GetContentElements()
-        {
-            yield return Members.ToXml();
-        }
+        public bool? InheritMembers { get; set; }
 
         public Members Members
         {
             get; protected set;
+        }
+
+        public override IEnumerable<XNode> GetContentElements()
+        {
+            if (InheritMembers.HasValue)
+                yield return new XElement("InheritMembers", InheritMembers.Value ? "True" : "False");
+
+            yield return Members.ToXml();
         }
     }
 }

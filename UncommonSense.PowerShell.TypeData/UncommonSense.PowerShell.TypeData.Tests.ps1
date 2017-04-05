@@ -27,7 +27,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><CodeProperty><Name>Baz</Name><GetCodeReference><TypeName>Bar</TypeName><MethodName>Qux</MethodName></GetCodeReference><SetCodeReference><TypeName>Quux</TypeName><MethodName>Quuux</MethodName></SetCodeReference></CodeProperty></Members></Type></Types>'
     }
 
-	It 'Correctly renders a MemberSet' {
+	It 'Correctly renders a MemberSet without -InheritMembers' {
 		(Types { 
 			_Type Foo {
 				MemberSet Baz {
@@ -36,6 +36,21 @@ Describe 'UncommonSense.Powershell.TypeData' {
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><Members><PropertySet><Name>DefaultDisplayPropertySet</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></MemberSet></Members></Type></Types>'
 	}
+
+    It 'Correctly renders -InheritMembers on a MemberSet' {
+        (Types {
+            _Type Foo {
+                MemberSet Baz -InheritMembers $true
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><InheritMembers>True</InheritMembers><Members/></MemberSet></Members></Type></Types>'
+
+        (Types {
+            _Type Foo {
+                MemberSet Baz -InheritMembers $false
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><InheritMembers>False</InheritMembers><Members/></MemberSet></Members></Type></Types>'
+    }
+
 
 	It 'Correctly renders a NoteProperty' {
 		(Types { 
