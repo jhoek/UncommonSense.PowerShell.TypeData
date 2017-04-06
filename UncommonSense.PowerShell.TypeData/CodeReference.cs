@@ -1,4 +1,6 @@
-﻿using System;
+﻿#pragma warning disable 1591
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,3 +30,5 @@ namespace UncommonSense.PowerShell.TypeData
         public XNode ToXml(string elementName) => new XElement(elementName, new XElement("TypeName", TypeName), new XElement("MethodName", MethodName));
     }
 }
+
+#pragma warning restore 1591

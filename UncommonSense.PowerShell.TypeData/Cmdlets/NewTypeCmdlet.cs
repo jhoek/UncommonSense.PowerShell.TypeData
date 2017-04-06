@@ -8,29 +8,45 @@ using System.Threading.Tasks;
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
     /// <summary>
-    /// <para type="synopsis">Adds a type to a type file structure, as a container for subsequent member definitions.</para>
+    /// <para type="synopsis">
+    /// Adds a type to a type file structure, as a container for subsequent member definitions.
+    /// </para>
     /// </summary>
     [Cmdlet(VerbsCommon.New, "Type")]
     [OutputType(typeof(Type))]
     public class NewTypeCmdlet : Cmdlet
     {
+        /// <summary>
+        /// <para type="description">A script block that evaluates to the members of this type.</para>
+        /// </summary>
         [Parameter(Position = 1)]
         public ScriptBlock Members
         {
             get; set;
         }
 
+        /// <summary>
+        /// <para type="description">Name for this type.</para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 0)]
         public string Name
         {
             get; set;
         }
 
+        /// <summary>
+        /// <para type="description">
+        /// Optional type converter for this type. Pass in either a string containing the type
+        /// converter type name, or a TypeConverter instance.
+        /// </para>
+        /// </summary>
         [Parameter()]
         public PSObject TypeConverter
         {
             get; set;
         }
+
+#pragma warning disable 1591
 
         protected TypeConverter BuildTypeConverter(PSObject typeConverter)
         {
@@ -60,5 +76,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
             WriteObject(@type);
         }
+
+#pragma warning restore 1591
     }
 }

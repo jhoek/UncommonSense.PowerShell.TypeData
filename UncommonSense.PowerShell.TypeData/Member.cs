@@ -1,8 +1,6 @@
-﻿using System;
+﻿#pragma warning disable 1591
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace UncommonSense.PowerShell.TypeData
@@ -26,3 +24,5 @@ namespace UncommonSense.PowerShell.TypeData
         }
     }
 }
+
+#pragma warning restore 1591
