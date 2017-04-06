@@ -15,15 +15,25 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(CodeMethod))]
     public class NewCodeMethodCmdlet : NewMemberCmdlet
     {
-        [Parameter(Mandatory = true, Position =1)]
+        /// <summary>
+        /// <para type="description">
+        /// The code reference for this code method. Code references instances can be created using
+        /// the New-CodeReference cmdlet.
+        /// </para>
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 1)]
         public CodeReference CodeReference
         {
             get; set;
         }
 
+#pragma warning disable 1591
+
         protected override void ProcessRecord()
         {
             WriteObject(new CodeMethod(Name, CodeReference));
         }
+
+#pragma warning restore 1591
     }
 }

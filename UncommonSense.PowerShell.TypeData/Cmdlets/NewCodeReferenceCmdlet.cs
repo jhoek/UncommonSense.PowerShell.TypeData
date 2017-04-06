@@ -9,20 +9,22 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
     /// <summary>
     /// <para type="synopsis">Creates a new code reference.</para>
-    /// <para type="description">Code references can be used as parameter values in the New-CodeMethod and New-CodeProperty cmdlets.</para>
+    /// <para type="description">
+    /// Code references can be used as parameter values in the New-CodeMethod and New-CodeProperty cmdlets.
+    /// </para>
     /// </summary>
     [Cmdlet(VerbsCommon.New, "CodeReference")]
     [OutputType(typeof(CodeReference))]
     public class NewCodeReferenceCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true, Position=0)]
-        public string TypeName
+        [Parameter(Mandatory = true, Position = 1)]
+        public string MethodName
         {
             get; set;
         }
 
-        [Parameter(Mandatory = true,Position =1)]
-        public string MethodName
+        [Parameter(Mandatory = true, Position = 0)]
+        public string TypeName
         {
             get; set;
         }
