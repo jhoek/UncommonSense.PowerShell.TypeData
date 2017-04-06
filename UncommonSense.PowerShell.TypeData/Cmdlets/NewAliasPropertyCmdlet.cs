@@ -15,21 +15,35 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(AliasProperty))]
     public class NewAliasPropertyCmdlet : NewMemberCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// The name of the referenced property that this alias refers to.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string ReferencedMemberName
         {
             get; set;
         }
 
+        /// <summary>
+        /// <para type="description">
+        /// The full name of the .NET Framework type of the referenced property value.
+        /// </para>
+        /// </summary>
         [Parameter()]
         public string TypeName
         {
             get; set;
         }
 
+#pragma warning disable 1591
+
         protected override void ProcessRecord()
         {
             WriteObject(new AliasProperty(Name, ReferencedMemberName) { TypeName = TypeName });
         }
+
+#pragma warning restore 1591
     }
 }
