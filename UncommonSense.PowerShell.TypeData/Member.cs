@@ -14,9 +14,19 @@ namespace UncommonSense.PowerShell.TypeData
 
         public override string ToString() => Name;
 
-        public virtual XNode ToXml() => new XElement(GetType().Name, new XElement("Name", Name), GetContentElements());
+        public virtual XNode ToXml() => new XElement(ElementName, new XElement("Name", Name), GetContentElements(), GetAttributes());
 
-        public abstract IEnumerable<XNode> GetContentElements();
+        public virtual string ElementName => GetType().Name;
+
+        public virtual IEnumerable<XAttribute> GetAttributes()
+        {
+            yield break;
+        }
+
+        public virtual IEnumerable<XNode> GetContentElements()
+        {
+            yield break;
+        }
 
         public string Name
         {

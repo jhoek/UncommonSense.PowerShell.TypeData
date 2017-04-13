@@ -19,14 +19,22 @@ namespace UncommonSense.PowerShell.TypeData
             ReferencedProperties = referencedProperties;
         }
 
-        public override IEnumerable<XNode> GetContentElements()
-        {
-            yield return new XElement("ReferencedProperties", ReferencedProperties.Select(p => new XElement("Name", p)));
-        }
+        public bool? IsHidden { get; set; }
 
         public string[] ReferencedProperties
         {
             get; protected set;
+        }
+
+        public override IEnumerable<XAttribute> GetAttributes()
+        {
+            if (IsHidden.HasValue)
+                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+        }
+
+        public override IEnumerable<XNode> GetContentElements()
+        {
+            yield return new XElement("ReferencedProperties", ReferencedProperties.Select(p => new XElement("Name", p)));
         }
     }
 }

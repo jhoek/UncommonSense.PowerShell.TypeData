@@ -15,16 +15,16 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(AliasProperty))]
     public class NewAliasPropertyCmdlet : NewMemberCmdlet
     {
+        [Parameter()]
+        public bool? IsHidden { get; set; }
+
         /// <summary>
         /// <para type="description">
         /// The name of the referenced property that this alias refers to.
         /// </para>
         /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
-        public string ReferencedMemberName
-        {
-            get; set;
-        }
+        public string ReferencedMemberName { get; set; }
 
         /// <summary>
         /// <para type="description">
@@ -32,16 +32,13 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         /// </para>
         /// </summary>
         [Parameter()]
-        public string TypeName
-        {
-            get; set;
-        }
+        public string TypeName { get; set; }
 
 #pragma warning disable 1591
 
         protected override void ProcessRecord()
         {
-            WriteObject(new AliasProperty(Name, ReferencedMemberName) { TypeName = TypeName });
+            WriteObject(new AliasProperty(Name, ReferencedMemberName) { TypeName = TypeName, IsHidden = IsHidden });
         }
 
 #pragma warning restore 1591

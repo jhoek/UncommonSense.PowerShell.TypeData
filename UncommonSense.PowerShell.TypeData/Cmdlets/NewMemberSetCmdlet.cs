@@ -21,6 +21,9 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        [Parameter()]
+        public bool? IsHidden { get; set; }
+
         [Parameter(Position = 1)]
         public ScriptBlock Members
         {
@@ -29,7 +32,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
         protected override void ProcessRecord()
         {
-            var memberSet = new MemberSet(Name);
+            var memberSet = new MemberSet(Name) { IsHidden = IsHidden };
             memberSet.InheritMembers = InheritMembers;
 
             Members?

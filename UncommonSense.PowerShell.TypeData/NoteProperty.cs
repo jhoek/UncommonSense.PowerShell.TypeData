@@ -26,6 +26,18 @@ namespace UncommonSense.PowerShell.TypeData
             get; protected set;
         }
 
+        public bool? IsHidden
+        {
+            get;
+            set;
+        }
+
+        public override IEnumerable<XAttribute> GetAttributes()
+        {
+            if (IsHidden.HasValue)
+                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+        }
+
         public override IEnumerable<XNode> GetContentElements()
         {
             yield return new XElement("Value", Value);

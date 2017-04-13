@@ -19,10 +19,17 @@ namespace UncommonSense.PowerShell.TypeData
         }
 
         public bool? InheritMembers { get; set; }
+        public bool? IsHidden { get; set; }
 
         public Members Members
         {
             get; protected set;
+        }
+
+        public override IEnumerable<XAttribute> GetAttributes()
+        {
+            if (IsHidden.HasValue)
+                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
         }
 
         public override IEnumerable<XNode> GetContentElements()

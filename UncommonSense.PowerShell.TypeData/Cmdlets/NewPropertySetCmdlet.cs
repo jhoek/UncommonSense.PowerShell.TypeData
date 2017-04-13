@@ -15,6 +15,9 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [OutputType(typeof(PropertySet))]
     public class NewPropertySetCmdlet : NewMemberCmdlet
     {
+        [Parameter()]
+        public bool? IsHidden { get; set; }
+
         [Parameter(Mandatory = true, Position = 1)]
         public string[] ReferencedProperties
         {
@@ -23,7 +26,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(new PropertySet(Name, ReferencedProperties));
+            WriteObject(new PropertySet(Name, ReferencedProperties) { IsHidden = IsHidden });
         }
     }
 }

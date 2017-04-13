@@ -17,6 +17,24 @@ namespace UncommonSense.PowerShell.TypeData
             SetCodeReference = setCodeReference;
         }
 
+        public CodeReference GetCodeReference
+        {
+            get; set;
+        }
+
+        public bool? IsHidden { get; set; }
+
+        public CodeReference SetCodeReference
+        {
+            get; set;
+        }
+
+        public override IEnumerable<XAttribute> GetAttributes()
+        {
+            if (IsHidden.HasValue)
+                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+        }
+
         public override IEnumerable<XNode> GetContentElements()
         {
             if (GetCodeReference != null)
@@ -28,18 +46,6 @@ namespace UncommonSense.PowerShell.TypeData
             {
                 yield return SetCodeReference.ToXml("SetCodeReference");
             }
-        }
-
-        //public override XNode ToXml() => new XElement("CodeProperty", new XElement("Name", Name), GetCodeReference?.ToXml("GetCodeReference"), SetCodeReference?.ToXml("SetCodeReference"));
-
-        public CodeReference GetCodeReference
-        {
-            get; set;
-        }
-
-        public CodeReference SetCodeReference
-        {
-            get; set;
         }
     }
 }

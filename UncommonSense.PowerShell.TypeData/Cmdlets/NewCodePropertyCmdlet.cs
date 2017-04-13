@@ -29,6 +29,9 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        [Parameter()]
+        public bool? IsHidden { get; set; }
+
         /// <summary>
         /// <para type="description">
         /// The code reference for this accessor. Code references instances can be created using the
@@ -45,7 +48,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(new CodeProperty(Name, GetCodeReference, SetCodeReference));
+            WriteObject(new CodeProperty(Name, GetCodeReference, SetCodeReference) { IsHidden = IsHidden });
         }
 
 #pragma warning restore 1591

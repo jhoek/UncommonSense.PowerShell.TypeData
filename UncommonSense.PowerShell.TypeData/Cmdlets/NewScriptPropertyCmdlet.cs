@@ -23,6 +23,9 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        [Parameter()]
+        public bool? IsHidden { get; set; }
+
         [Parameter(Position = 2)]
         public string SetScriptBlock
         {
@@ -31,7 +34,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
         protected override void ProcessRecord()
         {
-            WriteObject(new ScriptProperty(Name, GetScriptBlock, SetScriptBlock));
+            WriteObject(new ScriptProperty(Name, GetScriptBlock, SetScriptBlock) { IsHidden = IsHidden });
         }
     }
 }

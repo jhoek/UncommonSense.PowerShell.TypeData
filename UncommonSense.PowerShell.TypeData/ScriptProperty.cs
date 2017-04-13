@@ -17,6 +17,24 @@ namespace UncommonSense.PowerShell.TypeData
             SetScriptBlock = setScriptBlock;
         }
 
+        public string GetScriptBlock
+        {
+            get; set;
+        }
+
+        public bool? IsHidden { get; set; }
+
+        public string SetScriptBlock
+        {
+            get; set;
+        }
+
+        public override IEnumerable<XAttribute> GetAttributes()
+        {
+            if (IsHidden.HasValue)
+                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+        }
+
         public override IEnumerable<XNode> GetContentElements()
         {
             if (!string.IsNullOrEmpty(GetScriptBlock))
@@ -28,16 +46,6 @@ namespace UncommonSense.PowerShell.TypeData
             {
                 yield return new XElement("SetScriptBlock", SetScriptBlock);
             }
-        }
-
-        public string GetScriptBlock
-        {
-            get; set;
-        }
-
-        public string SetScriptBlock
-        {
-            get; set;
         }
     }
 }

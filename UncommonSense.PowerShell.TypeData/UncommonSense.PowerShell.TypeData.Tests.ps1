@@ -15,6 +15,12 @@ Describe 'UncommonSense.Powershell.TypeData' {
 				AliasProperty Baz Bar -TypeName Qux
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><AliasProperty><Name>Baz</Name><ReferencedMemberName>Bar</ReferencedMemberName><TypeName>Qux</TypeName></AliasProperty></Members></Type></Types>'
+
+		(Types {
+			_Type Foo {
+				AliasProperty Baz Bar -IsHidden $true
+			}
+		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><AliasPropertyIsHidden="true"><Name>Baz</Name><ReferencedMemberName>Bar</ReferencedMemberName></AliasProperty></Members></Type></Types>'
 	}
 
     It 'Correctly renders a CodeMethod' {
@@ -31,6 +37,12 @@ Describe 'UncommonSense.Powershell.TypeData' {
                 CodeProperty Baz (CodeReference Bar Qux) (CodeReference Quux Quuux)
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><CodeProperty><Name>Baz</Name><GetCodeReference><TypeName>Bar</TypeName><MethodName>Qux</MethodName></GetCodeReference><SetCodeReference><TypeName>Quux</TypeName><MethodName>Quuux</MethodName></SetCodeReference></CodeProperty></Members></Type></Types>'
+
+        (Types {
+            _Type Foo {
+                CodeProperty Baz (CodeReference Bar Qux) (CodeReference Quux Quuux) -IsHidden $true
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><CodePropertyIsHidden="true"><Name>Baz</Name><GetCodeReference><TypeName>Bar</TypeName><MethodName>Qux</MethodName></GetCodeReference><SetCodeReference><TypeName>Quux</TypeName><MethodName>Quuux</MethodName></SetCodeReference></CodeProperty></Members></Type></Types>'
     }
 
 	It 'Correctly renders a MemberSet without -InheritMembers' {
@@ -41,6 +53,14 @@ Describe 'UncommonSense.Powershell.TypeData' {
                 }
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><Members><PropertySet><Name>DefaultDisplayPropertySet</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></MemberSet></Members></Type></Types>'
+
+		(Types {
+			_Type Foo {
+				MemberSet Baz -IsHidden $true {
+                    PropertySet DefaultDisplayPropertySet Bar,Qux,Quux
+                }
+			}
+		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSetIsHidden="true"><Name>Baz</Name><Members><PropertySet><Name>DefaultDisplayPropertySet</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></MemberSet></Members></Type></Types>'
 	}
 
     It 'Correctly renders -InheritMembers on a MemberSet' {
@@ -69,6 +89,12 @@ Describe 'UncommonSense.Powershell.TypeData' {
 				NoteProperty Baz Bar -TypeName Qux
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><NoteProperty><Name>Baz</Name><Value>Bar</Value><TypeName>Qux</TypeName></NoteProperty></Members></Type></Types>'
+
+		(Types {
+			_Type Foo {
+				NoteProperty Baz Bar -IsHidden $true
+			}
+		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><NotePropertyIsHidden="true"><Name>Baz</Name><Value>Bar</Value></NoteProperty></Members></Type></Types>'
 	}
 
     It 'Correctly renders a PropertySet' {
@@ -77,6 +103,12 @@ Describe 'UncommonSense.Powershell.TypeData' {
                 PropertySet Baz Bar,Qux,Quux
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><PropertySet><Name>Baz</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></Type></Types>'
+
+        (Types {
+            _Type Foo {
+                PropertySet Baz Bar,Qux,Quux -IsHidden $true
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><PropertySetIsHidden="true"><Name>Baz</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></Type></Types>'
     }
 
     It 'Correctly renders a ScriptMethod' {
@@ -93,6 +125,12 @@ Describe 'UncommonSense.Powershell.TypeData' {
                 ScriptProperty Baz 'Get-Bar' 'Set-Bar'
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><ScriptProperty><Name>Baz</Name><GetScriptBlock>Get-Bar</GetScriptBlock><SetScriptBlock>Set-Bar</SetScriptBlock></ScriptProperty></Members></Type></Types>'
+
+        (Types {
+            _Type Foo {
+                ScriptProperty Baz 'Get-Bar' 'Set-Bar' -IsHidden $true
+            }
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><ScriptPropertyIsHidden="true"><Name>Baz</Name><GetScriptBlock>Get-Bar</GetScriptBlock><SetScriptBlock>Set-Bar</SetScriptBlock></ScriptProperty></Members></Type></Types>'
     }
 
 	It 'Correctly renders a type converter from a string' {

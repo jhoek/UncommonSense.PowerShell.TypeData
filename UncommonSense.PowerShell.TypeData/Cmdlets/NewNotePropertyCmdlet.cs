@@ -16,20 +16,17 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     public class NewNotePropertyCmdlet : NewMemberCmdlet
     {
         [Parameter()]
-        public string TypeName
-        {
-            get; set;
-        }
+        public bool? IsHidden { get; set; }
+
+        [Parameter()]
+        public string TypeName { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
-        public string Value
-        {
-            get; set;
-        }
+        public string Value { get; set; }
 
         protected override void ProcessRecord()
         {
-            WriteObject(new NoteProperty(Name, Value) { TypeName = TypeName });
+            WriteObject(new NoteProperty(Name, Value) { TypeName = TypeName, IsHidden = IsHidden });
         }
     }
 }
