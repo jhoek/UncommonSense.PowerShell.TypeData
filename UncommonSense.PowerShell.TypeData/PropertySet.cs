@@ -19,7 +19,7 @@ namespace UncommonSense.PowerShell.TypeData
             ReferencedProperties = referencedProperties;
         }
 
-        public bool? IsHidden { get; set; }
+        public bool IsHidden { get; set; }
 
         public string[] ReferencedProperties
         {
@@ -28,8 +28,8 @@ namespace UncommonSense.PowerShell.TypeData
 
         public override IEnumerable<XAttribute> GetAttributes()
         {
-            if (IsHidden.HasValue)
-                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+            if (IsHidden)
+                yield return new XAttribute("IsHidden", "true");
         }
 
         public override IEnumerable<XNode> GetContentElements()

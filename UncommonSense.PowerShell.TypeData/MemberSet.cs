@@ -18,8 +18,8 @@ namespace UncommonSense.PowerShell.TypeData
             Members = new Members(members);
         }
 
-        public bool? InheritMembers { get; set; }
-        public bool? IsHidden { get; set; }
+        public bool DoNotInheritMembers { get; set; }
+        public bool IsHidden { get; set; }
 
         public Members Members
         {
@@ -28,14 +28,14 @@ namespace UncommonSense.PowerShell.TypeData
 
         public override IEnumerable<XAttribute> GetAttributes()
         {
-            if (IsHidden.HasValue)
-                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+            if (IsHidden)
+                yield return new XAttribute("IsHidden", "true");
         }
 
         public override IEnumerable<XNode> GetContentElements()
         {
-            if (InheritMembers.HasValue)
-                yield return new XElement("InheritMembers", InheritMembers.Value ? "True" : "False");
+            if (DoNotInheritMembers)
+                yield return new XElement("InheritMembers", "false");
 
             yield return Members.ToXml();
         }

@@ -18,7 +18,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
 		(Types {
 			_Type Foo {
-				AliasProperty Baz Bar -IsHidden $true
+				AliasProperty Baz Bar -IsHidden
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><AliasPropertyIsHidden="true"><Name>Baz</Name><ReferencedMemberName>Bar</ReferencedMemberName></AliasProperty></Members></Type></Types>'
 	}
@@ -40,7 +40,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
         (Types {
             _Type Foo {
-                CodeProperty Baz (CodeReference Bar Qux) (CodeReference Quux Quuux) -IsHidden $true
+                CodeProperty Baz (CodeReference Bar Qux) (CodeReference Quux Quuux) -IsHidden
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><CodePropertyIsHidden="true"><Name>Baz</Name><GetCodeReference><TypeName>Bar</TypeName><MethodName>Qux</MethodName></GetCodeReference><SetCodeReference><TypeName>Quux</TypeName><MethodName>Quuux</MethodName></SetCodeReference></CodeProperty></Members></Type></Types>'
     }
@@ -56,25 +56,25 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
 		(Types {
 			_Type Foo {
-				MemberSet Baz -IsHidden $true {
+				MemberSet Baz -IsHidden {
                     PropertySet DefaultDisplayPropertySet Bar,Qux,Quux
                 }
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSetIsHidden="true"><Name>Baz</Name><Members><PropertySet><Name>DefaultDisplayPropertySet</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></MemberSet></Members></Type></Types>'
 	}
 
-    It 'Correctly renders -InheritMembers on a MemberSet' {
+    It 'Correctly renders -DoNotInheritMembers on a MemberSet' {
         (Types {
             _Type Foo {
-                MemberSet Baz -InheritMembers $true
+                MemberSet Baz -DoNotInheritMembers
             }
-        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><InheritMembers>True</InheritMembers><Members/></MemberSet></Members></Type></Types>'
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><InheritMembers>False</InheritMembers><Members/></MemberSet></Members></Type></Types>'
 
         (Types {
             _Type Foo {
-                MemberSet Baz -InheritMembers $false
+                MemberSet Baz -IsHidden -DoNotInheritMembers
             }
-        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSet><Name>Baz</Name><InheritMembers>False</InheritMembers><Members/></MemberSet></Members></Type></Types>'
+        }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><MemberSetIsHidden="true"><Name>Baz</Name><InheritMembers>False</InheritMembers><Members/></MemberSet></Members></Type></Types>'
     }
 
 	It 'Correctly renders a NoteProperty' {
@@ -92,7 +92,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
 		(Types {
 			_Type Foo {
-				NoteProperty Baz Bar -IsHidden $true
+				NoteProperty Baz Bar -IsHidden
 			}
 		}) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><NotePropertyIsHidden="true"><Name>Baz</Name><Value>Bar</Value></NoteProperty></Members></Type></Types>'
 	}
@@ -106,7 +106,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
         (Types {
             _Type Foo {
-                PropertySet Baz Bar,Qux,Quux -IsHidden $true
+                PropertySet Baz Bar,Qux,Quux -IsHidden
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><PropertySetIsHidden="true"><Name>Baz</Name><ReferencedProperties><Name>Bar</Name><Name>Qux</Name><Name>Quux</Name></ReferencedProperties></PropertySet></Members></Type></Types>'
     }
@@ -128,7 +128,7 @@ Describe 'UncommonSense.Powershell.TypeData' {
 
         (Types {
             _Type Foo {
-                ScriptProperty Baz 'Get-Bar' 'Set-Bar' -IsHidden $true
+                ScriptProperty Baz 'Get-Bar' 'Set-Bar' -IsHidden
             }
         }) -replace '\s', '' | Should Be '<Types><Type><Name>Foo</Name><Members><ScriptPropertyIsHidden="true"><Name>Baz</Name><GetScriptBlock>Get-Bar</GetScriptBlock><SetScriptBlock>Set-Bar</SetScriptBlock></ScriptProperty></Members></Type></Types>'
     }

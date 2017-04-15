@@ -16,7 +16,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     public class NewNotePropertyCmdlet : NewMemberCmdlet
     {
         [Parameter()]
-        public bool? IsHidden { get; set; }
+        public SwitchParameter IsHidden { get; set; }
 
         [Parameter()]
         public string TypeName { get; set; }

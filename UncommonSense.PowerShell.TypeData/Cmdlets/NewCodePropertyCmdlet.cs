@@ -30,7 +30,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         }
 
         [Parameter()]
-        public bool? IsHidden { get; set; }
+        public SwitchParameter IsHidden { get; set; }
 
         /// <summary>
         /// <para type="description">

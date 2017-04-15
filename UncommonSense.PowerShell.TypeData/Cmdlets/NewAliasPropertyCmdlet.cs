@@ -16,7 +16,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     public class NewAliasPropertyCmdlet : NewMemberCmdlet
     {
         [Parameter()]
-        public bool? IsHidden { get; set; }
+        public SwitchParameter IsHidden { get; set; }
 
         /// <summary>
         /// <para type="description">

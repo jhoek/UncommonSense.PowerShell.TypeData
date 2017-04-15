@@ -16,13 +16,13 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     public class NewMemberSetCmdlet : NewMemberCmdlet
     {
         [Parameter()]
-        public bool? InheritMembers
+        public SwitchParameter DoNotInheritMembers
         {
             get; set;
         }
 
         [Parameter()]
-        public bool? IsHidden { get; set; }
+        public SwitchParameter IsHidden { get; set; }
 
         [Parameter(Position = 1)]
         public ScriptBlock Members
@@ -33,7 +33,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         protected override void ProcessRecord()
         {
             var memberSet = new MemberSet(Name) { IsHidden = IsHidden };
-            memberSet.InheritMembers = InheritMembers;
+            memberSet.DoNotInheritMembers = DoNotInheritMembers;
 
             Members?
                 .Invoke()

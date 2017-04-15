@@ -16,7 +16,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     public class NewPropertySetCmdlet : NewMemberCmdlet
     {
         [Parameter()]
-        public bool? IsHidden { get; set; }
+        public SwitchParameter IsHidden { get; set; }
 
         [Parameter(Mandatory = true, Position = 1)]
         public string[] ReferencedProperties

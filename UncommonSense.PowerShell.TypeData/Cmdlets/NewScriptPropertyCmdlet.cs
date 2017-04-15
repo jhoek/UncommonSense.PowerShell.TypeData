@@ -24,7 +24,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         }
 
         [Parameter()]
-        public bool? IsHidden { get; set; }
+        public SwitchParameter IsHidden { get; set; }
 
         [Parameter(Position = 2)]
         public string SetScriptBlock

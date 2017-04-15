@@ -26,7 +26,7 @@ namespace UncommonSense.PowerShell.TypeData
             get; protected set;
         }
 
-        public bool? IsHidden
+        public bool IsHidden
         {
             get;
             set;
@@ -34,8 +34,8 @@ namespace UncommonSense.PowerShell.TypeData
 
         public override IEnumerable<XAttribute> GetAttributes()
         {
-            if (IsHidden.HasValue)
-                yield return new XAttribute("IsHidden", IsHidden.Value ? "true" : "false");
+            if (IsHidden)
+                yield return new XAttribute("IsHidden", "true");
         }
 
         public override IEnumerable<XNode> GetContentElements()
