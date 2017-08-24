@@ -13,9 +13,10 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "ScriptMethod")]
     [OutputType(typeof(ScriptMethod))]
+    [Alias("ScriptMethod")]
     public class NewScriptMethodCmdlet : NewMemberCmdlet
     {
-        [Parameter(Mandatory = true, Position=1)]
+        [Parameter(Mandatory = true, Position = 1)]
         public string Script
         {
             get; set;

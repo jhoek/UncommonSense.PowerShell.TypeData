@@ -13,6 +13,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "PropertySet")]
     [OutputType(typeof(PropertySet))]
+    [Alias("PropertySet")]
     public class NewPropertySetCmdlet : NewMemberCmdlet
     {
         [Parameter()]

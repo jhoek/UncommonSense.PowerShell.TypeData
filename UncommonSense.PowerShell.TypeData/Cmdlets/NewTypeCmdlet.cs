@@ -14,6 +14,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "Type")]
     [OutputType(typeof(Type))]
+    [Alias("_Type")]
     public class NewTypeCmdlet : Cmdlet
     {
         /// <summary>

@@ -15,6 +15,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "CodeReference")]
     [OutputType(typeof(CodeReference))]
+    [Alias("CodeReference")]
     public class NewCodeReferenceCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, Position = 1)]

@@ -15,6 +15,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "ScriptProperty")]
     [OutputType(typeof(ScriptProperty))]
+    [Alias("ScriptProperty")]
     public class NewScriptPropertyCmdlet : NewMemberCmdlet
     {
         [Parameter(Mandatory = true, Position = 1)]

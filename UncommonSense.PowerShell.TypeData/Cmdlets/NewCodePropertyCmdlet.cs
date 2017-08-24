@@ -15,6 +15,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "CodeProperty")]
     [OutputType(typeof(CodeProperty))]
+    [Alias("CodeProperty")]
     public class NewCodePropertyCmdlet : NewMemberCmdlet
     {
         /// <summary>

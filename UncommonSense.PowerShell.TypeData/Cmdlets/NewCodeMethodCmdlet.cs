@@ -13,6 +13,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     /// </summary>
     [Cmdlet(VerbsCommon.New, "CodeMethod")]
     [OutputType(typeof(CodeMethod))]
+    [Alias("CodeMethod")]
     public class NewCodeMethodCmdlet : NewMemberCmdlet
     {
         /// <summary>

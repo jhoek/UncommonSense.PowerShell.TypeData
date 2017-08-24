@@ -81,19 +81,12 @@
     <None Include="packages.config" />
     <None Include="OnPostBuild.ps1" />
     <None Include="Build.Psake.ps1" />
-    <None Include="UncommonSense.PowerShell.TypeData.psd1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="UncommonSense.PowerShell.TypeData.psm1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="UncommonSense.PowerShell.TypeData.Tests.ps1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="UncommonSense.PowerShell.TypeData.psd1" />
+    <None Include="UncommonSense.PowerShell.TypeData.Tests.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"c:/windows/system32/windowspowershell/v1.0/powershell.exe" -File "$(ProjectDir)/OnPostBuild.ps1"</PostBuildEvent>
+    <PostBuildEvent>rem "c:/windows/system32/windowspowershell/v1.0/powershell.exe" -File "$(ProjectDir)/OnPostBuild.ps1"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\XmlDoc2CmdletDoc.0.2.7\build\XmlDoc2CmdletDoc.targets" Condition="Exists('..\packages\XmlDoc2CmdletDoc.0.2.7\build\XmlDoc2CmdletDoc.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
