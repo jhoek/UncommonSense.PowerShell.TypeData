@@ -8,10 +8,16 @@ assembly_info:
   assembly_version: "{version}"
   assembly_file_version: "{version}"
 configuration: Release
-before_build:
-  - ps: Update-ModuleManifest -Path ./UncommonSense.PowerShell.TypeData/manifest.psd1 -ModuleVersion $env:APPVEYOR_BUILD_VERSION
 build:
   verbosity: minimal
+after_build:
+  - ps: |
+      $ManifestPath = ./UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/manifest.psd1
+      Import-Module $ManifestPath -Force
+      Update-ModuleManifest `
+        -Path $ManifestPath `
+        -ModuleVersion $env:APPVEYOR_BUILD_VERSION `
+        -ExportedCmdlets (Get-Command -Module UncommonSense.PowerShell.TypeData -CommandType Cmdlet | Select-Object -ExpandProperty Name)
 test_script:
   - ps: cd UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION); Invoke-Pester
 artifacts:
