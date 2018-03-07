@@ -1,6 +1,4 @@
-﻿(Join-Path $PSScriptRoot 'UncommonSense.PowerShell.TypeData.psd1'),
-(Join-Path $PSScriptRoot 'bin/Debug/UncommonSense.PowerShell.TypeData.psd1') |
-    ForEach-Object { Import-Module $_ -ErrorAction SilentlyContinue }
+﻿Import-Module (Join-Path -Path $PSScriptRoot -ChildPath UncommonSense.PowerShell.TypeData.psd1) -Force
 
 Describe 'UncommonSense.Powershell.TypeData' {
 	It 'Correctly renders an AliasProperty' {
