@@ -2,7 +2,6 @@ version: 1.2.1.{build}
 image: Visual Studio 2017
 install:
   - cmd: nuget restore
-  - ps: Install-Module psake -Scope CurrentUser -Force
 assembly_info:
   patch: true
   file: AssemblyInfo.*
@@ -14,6 +13,6 @@ before_build:
 build:
   verbosity: minimal
 test_script:
-  - ps: Invoke-Psake UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/UncommonSense.PowerShell.TypeData.Tests.ps1
+  - ps: Invoke-Pester UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/UncommonSense.PowerShell.TypeData.Tests.ps1
 artifacts:
   - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
