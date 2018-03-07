@@ -13,6 +13,6 @@ before_build:
 build:
   verbosity: minimal
 test_script:
-  - ps: Invoke-Pester UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/UncommonSense.PowerShell.TypeData.Tests.ps1
+  - ps: cd UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION); Invoke-Pester
 artifacts:
   - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
