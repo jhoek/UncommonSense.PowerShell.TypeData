@@ -14,10 +14,11 @@ after_build:
   - ps: |
       $ManifestPath = "./UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/UncommonSense.PowerShell.TypeData.psd1"
       Import-Module $ManifestPath -Force
+      (Get-Command -Module UncommonSense.PowerShell.TypeData -CommandType Cmdlet).Name
       Update-ModuleManifest `
         -Path $ManifestPath `
         -ModuleVersion $env:APPVEYOR_BUILD_VERSION `
-        -CmdletsToExport (Get-Command -Module UncommonSense.PowerShell.TypeData -CommandType Cmdlet | Select-Object -ExpandProperty Name)
+        -CmdletsToExport (Get-Command -Module UncommonSense.PowerShell.TypeData -CommandType Cmdlet).Name
 test_script:
   - ps: cd UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION); Invoke-Pester
 artifacts:
