@@ -8,6 +8,8 @@ assembly_info:
   assembly_version: "{version}"
   assembly_file_version: "{version}"
 configuration: Release
+before_build:
+  - ps: Update-ModuleManifest -Path ./UncommonSense.PowerShell.TypeData/UncommonSense.PowerShell.TypeData.psd1 -ModuleVersion $env:APPVEYOR_BUILD_VERSION
 build:
   verbosity: minimal
 artifacts:
