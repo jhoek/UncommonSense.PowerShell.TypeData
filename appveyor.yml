@@ -12,5 +12,7 @@ before_build:
   - ps: Update-ModuleManifest -Path ./UncommonSense.PowerShell.TypeData/manifest.psd1 -ModuleVersion $env:APPVEYOR_BUILD_VERSION
 build:
   verbosity: minimal
+test_script:
+  - ps: Invoke-Psake UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/UncommonSense.PowerShell.TypeData.Tests.ps1
 artifacts:
   - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
