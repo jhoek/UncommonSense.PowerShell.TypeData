@@ -35,13 +35,10 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         [Parameter()]
         public string TypeName { get; set; }
 
-#pragma warning disable 1591
-
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new AliasProperty(Name, ReferencedMemberName) { TypeName = TypeName, IsHidden = IsHidden });
         }
-
-#pragma warning restore 1591
     }
 }

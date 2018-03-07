@@ -25,6 +25,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         [Parameter(Mandatory = true, Position = 1)]
         public string Value { get; set; }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new NoteProperty(Name, Value) { TypeName = TypeName, IsHidden = IsHidden });

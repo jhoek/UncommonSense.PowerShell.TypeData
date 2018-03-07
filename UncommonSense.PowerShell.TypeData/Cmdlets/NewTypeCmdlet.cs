@@ -47,8 +47,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
-#pragma warning disable 1591
-
+        /// <exclude/>
         protected TypeConverter BuildTypeConverter(PSObject typeConverter)
         {
             if (typeConverter == null)
@@ -63,6 +62,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             throw new ArgumentOutOfRangeException("TypeConverter");
         }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             var @type = new Type(Name);
@@ -77,7 +77,5 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
 
             WriteObject(@type);
         }
-
-#pragma warning restore 1591
     }
 }

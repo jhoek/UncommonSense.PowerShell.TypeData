@@ -25,6 +25,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new PropertySet(Name, ReferencedProperties) { IsHidden = IsHidden });

@@ -31,6 +31,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             var memberSet = new MemberSet(Name) { IsHidden = IsHidden };

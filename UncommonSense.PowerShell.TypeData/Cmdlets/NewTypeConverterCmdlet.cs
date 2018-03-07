@@ -27,13 +27,10 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
-#pragma warning disable 1591
-
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new TypeConverter(TypeName));
         }
-
-#pragma warning restore 1591
     }
 }
