@@ -11,4 +11,4 @@ configuration: Release
 build:
   verbosity: minimal
 artifacts:
-  - path: bin/Release
+  - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
