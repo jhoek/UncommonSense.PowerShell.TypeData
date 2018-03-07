@@ -10,3 +10,5 @@ assembly_info:
 configuration: Release
 build:
   verbosity: minimal
+artifacts:
+  -path: bin/Release
