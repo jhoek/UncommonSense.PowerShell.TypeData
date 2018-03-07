@@ -1,5 +1,7 @@
 version: 1.2.1.{build}
 image: Visual Studio 2017
+install:
+  - cmd: nuget restore
 assembly_info:
   patch: true
   file: AssemblyInfo.*
