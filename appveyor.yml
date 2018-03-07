@@ -13,6 +13,6 @@ before_build:
 build:
   verbosity: minimal
 test_script:
-  - ps: cd UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION); Write-Host $pwd; Invoke-Pester
+  - ps: cd UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION); Write-Host $pwd; Get-ChildItem; Invoke-Pester
 artifacts:
   - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
