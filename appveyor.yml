@@ -8,3 +8,5 @@ assembly_info:
   assembly_version: "{version}"
   assembly_file_version: "{version}"
 configuration: Release
+build:
+  verbosity: minimal
