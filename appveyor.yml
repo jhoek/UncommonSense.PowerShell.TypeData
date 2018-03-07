@@ -12,7 +12,7 @@ build:
   verbosity: minimal
 after_build:
   - ps: |
-      $ManifestPath = ./UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/manifest.psd1
+      $ManifestPath = "./UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/manifest.psd1"
       Import-Module $ManifestPath -Force
       Update-ModuleManifest `
         -Path $ManifestPath `
