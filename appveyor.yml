@@ -2,7 +2,7 @@ version: 1.2.1.{build}
 image: Visual Studio 2017
 install:
   - cmd: nuget restore
-  - ps: Install-Module psake -CurrentUser -Force
+  - ps: Install-Module psake -Scope CurrentUser -Force
 assembly_info:
   patch: true
   file: AssemblyInfo.*
