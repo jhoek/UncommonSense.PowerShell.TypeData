@@ -1,6 +1,8 @@
 # UncommonSense.PowerShell.TypeData
 *PowerShell module to help build PowerShell type extension files*
 
+![https://ci.appveyor.com/api/projects/status/github/jhoek/UncommonSense.PowerShell.TypeData?svg=true](https://ci.appveyor.com/api/projects/status/github/jhoek/UncommonSense.PowerShell.TypeData?svg=true)
+
 ## Installation
 1. Build the project 
 1. From the build output folder (depends on your build configuration; typically `bin/Debug` or  `bin/Release`), copy the following items to a folder called `UncommonSense.PowerShell.TypeData` anywhere in your PowerShell module path. To find your module path, type `$env:PSModulePath -split ';'` in a PowerShell console.
