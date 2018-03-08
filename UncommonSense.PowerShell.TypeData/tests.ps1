@@ -1,5 +1,5 @@
 ﻿$Here = Split-Path -Parent $MyInvocation.MyCommand.Path
-Import-Module $Here\UncommonSense.PowerShell.TypeData.psd1 -Force -Verbose
+Import-Module $Here\UncommonSense.PowerShell.TypeData.psd1 -Force
 
 Describe 'UncommonSense.Powershell.TypeData' {
     It 'Correctly renders an AliasProperty' {
