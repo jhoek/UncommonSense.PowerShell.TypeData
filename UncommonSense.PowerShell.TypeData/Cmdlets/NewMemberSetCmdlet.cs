@@ -16,21 +16,39 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("MemberSet")]
     public class NewMemberSetCmdlet : NewMemberCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Inheriting members tells this MemberSet to walk the TypeNames during a lookup of members. This
+        /// means that any members of a parent type that are in a MemberSet of the same name will be
+        /// available through this MemberSet. Setting this switch turns off this behaviour.
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter DoNotInheritMembers
         {
             get; set;
         }
 
+        /// <summary> 
+        /// <para type="description">
+        /// Set true if the member is supposed to be hidden
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// Defines the members for this memberset
+        /// </para>
+        /// </summary>
         [Parameter(Position = 1)]
         public ScriptBlock Members
         {
             get; set;
         }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             var memberSet = new MemberSet(Name) { IsHidden = IsHidden };

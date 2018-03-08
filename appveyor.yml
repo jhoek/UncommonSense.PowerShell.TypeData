@@ -1,0 +1,28 @@
+version: 1.2.1.{build}
+image: Visual Studio 2017
+install:
+  - cmd: nuget restore
+assembly_info:
+  patch: true
+  file: AssemblyInfo.*
+  assembly_version: "{version}"
+  assembly_file_version: "{version}"
+configuration: Release
+build:
+  verbosity: minimal
+after_build:
+  - ps: |
+      $ManifestPath = "./UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)/UncommonSense.PowerShell.TypeData.psd1"
+      Import-Module $ManifestPath -Force
+      (Get-Command -Module UncommonSense.PowerShell.TypeData -CommandType Cmdlet).Name
+      Update-ModuleManifest `
+        -Path $ManifestPath `
+        -ModuleVersion $env:APPVEYOR_BUILD_VERSION `
+        -CmdletsToExport (Get-Command -Module UncommonSense.PowerShell.TypeData -CommandType Cmdlet).Name
+test_script:
+  - ps: cd UncommonSense.PowerShell.TypeData/bin/$($env:CONFIGURATION)
+  - ps: $res = Invoke-Pester -OutputFormat NUnitXml -OutputFile TestsResults.xml -PassThru
+  - ps: (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestsResults.xml))
+  - ps: if ($res.FailedCount -gt 0) { throw "$($res.FailedCount) tests failed."}
+artifacts:
+  - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)

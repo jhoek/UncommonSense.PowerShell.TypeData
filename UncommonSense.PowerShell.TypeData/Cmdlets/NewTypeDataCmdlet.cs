@@ -41,8 +41,7 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
-#pragma warning disable 1591
-
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             var typeData = new Types();
@@ -59,7 +58,5 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
                     .Join(Environment.NewLine)
                 );
         }
-
-#pragma warning restore 1591
     }
 }

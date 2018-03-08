@@ -18,21 +18,37 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("ScriptProperty")]
     public class NewScriptPropertyCmdlet : NewMemberCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Defines the getter script block for this script property
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string GetScriptBlock
         {
             get; set;
         }
 
+        /// <summary> 
+        /// <para type="description">
+        /// Set true if the member is supposed to be hidden
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// Defines the setter script block for this script property
+        /// </para>
+        /// </summary>
         [Parameter(Position = 2)]
         public string SetScriptBlock
         {
             get; set;
         }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new ScriptProperty(Name, GetScriptBlock, SetScriptBlock) { IsHidden = IsHidden });

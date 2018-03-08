@@ -30,6 +30,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        /// <summary> 
+        /// <para type="description">
+        /// Set true if the member is supposed to be hidden
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
@@ -45,13 +50,10 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
-#pragma warning disable 1591
-
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new CodeProperty(Name, GetCodeReference, SetCodeReference) { IsHidden = IsHidden });
         }
-
-#pragma warning restore 1591
     }
 }

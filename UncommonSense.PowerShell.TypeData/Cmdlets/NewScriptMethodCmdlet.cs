@@ -16,12 +16,18 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("ScriptMethod")]
     public class NewScriptMethodCmdlet : NewMemberCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Defines the script block for this script method
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string Script
         {
             get; set;
         }
 
+        /// <exclude/>
         protected override void ProcessRecord()
         {
             WriteObject(new ScriptMethod(Name, Script));
