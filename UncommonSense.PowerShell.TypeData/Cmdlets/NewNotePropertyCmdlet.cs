@@ -16,12 +16,27 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("NoteProperty")]
     public class NewNotePropertyCmdlet : NewMemberCmdlet
     {
+        /// <summary> 
+        /// <para type="description">
+        /// Set true if the member is supposed to be hidden
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// The full name of the .NET Framework type of the referenced property value.
+        /// </para>
+        /// </summary>
         [Parameter()]
         public string TypeName { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// The (static) value for this note property
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string Value { get; set; }
 

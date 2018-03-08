@@ -16,6 +16,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("PropertySet")]
     public class NewPropertySetCmdlet : NewMemberCmdlet
     {
+        /// <summary> 
+        /// <para type="description">
+        /// Set true if the member is supposed to be hidden
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 

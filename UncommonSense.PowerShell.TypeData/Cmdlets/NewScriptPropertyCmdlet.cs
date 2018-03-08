@@ -24,6 +24,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
             get; set;
         }
 
+        /// <summary> 
+        /// <para type="description">
+        /// Set true if the member is supposed to be hidden
+        /// </para>
+        /// </summary>
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
