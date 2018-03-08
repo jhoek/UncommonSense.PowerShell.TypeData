@@ -18,6 +18,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("ScriptProperty")]
     public class NewScriptPropertyCmdlet : NewMemberCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Defines the getter script block for this script property
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string GetScriptBlock
         {
@@ -32,6 +37,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// Defines the setter script block for this script property
+        /// </para>
+        /// </summary>
         [Parameter(Position = 2)]
         public string SetScriptBlock
         {

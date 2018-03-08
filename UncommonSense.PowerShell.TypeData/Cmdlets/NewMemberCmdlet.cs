@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace UncommonSense.PowerShell.TypeData.Cmdlets
 {
+    /// <exclude/>
     public abstract class NewMemberCmdlet : Cmdlet
     {
         /// <summary>

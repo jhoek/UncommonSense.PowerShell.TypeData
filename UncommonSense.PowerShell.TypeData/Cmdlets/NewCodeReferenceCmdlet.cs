@@ -18,12 +18,22 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
     [Alias("CodeReference")]
     public class NewCodeReferenceCmdlet : Cmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Defines the .NET method name that this code reference refers to
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string MethodName
         {
             get; set;
         }
 
+        /// <summary>
+        /// <para type="description">
+        /// Defines the .NET type name that this code reference refers to
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 0)]
         public string TypeName
         {

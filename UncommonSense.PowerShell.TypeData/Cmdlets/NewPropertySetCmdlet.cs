@@ -24,6 +24,11 @@ namespace UncommonSense.PowerShell.TypeData.Cmdlets
         [Parameter()]
         public SwitchParameter IsHidden { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// Defines the properties that this property set references
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         public string[] ReferencedProperties
         {
