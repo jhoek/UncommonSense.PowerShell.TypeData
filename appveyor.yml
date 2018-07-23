@@ -30,4 +30,6 @@ test_script:
 artifacts:
   - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
 on_success:
-  - ps: Publish-Module -Path . -NuGetApiKey $env:NuGetApiKey
+  - ps: |
+      Write-Host (Get-Item -Path .)
+      Publish-Module -Path . -NuGetApiKey $env:NuGetApiKey
