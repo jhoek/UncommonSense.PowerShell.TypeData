@@ -1,5 +1,8 @@
 version: 1.2.1.{build}
 image: Visual Studio 2017
+environment:
+  nugetapikey:
+    secure: d+MzIFRktdbKIuES/oAyDIM2MAV+aGYtB6J3Ek7paA8EEKUr5nY1LCujyFPkrlSp
 install:
   - cmd: nuget restore
 assembly_info:
@@ -26,3 +29,5 @@ test_script:
   - ps: if ($res.FailedCount -gt 0) { throw "$($res.FailedCount) tests failed."}
 artifacts:
   - path: UncommonSense.PowerShell.TypeData/bin/$(configuration)
+on_success:
+  - ps: Publish-Module UncommonSense.PowerShell.TypeData/bin/$(configuration) -NuGetApiKey $env:NuGetApiKey
